@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "Full_name": "Jon Jones",
+      "Nick_name": "Bones",
+      "record": "23-0",
+      "fighting_out_of": "Bronx, New York",
+      "Weight_Class": "Heavy Weight"
+    },
+    {
+      "id": 2,
+      "Full_name": "Anderson Silva",
+      "Nick_name": "Spider",
+      "record": "32-3",
+      "fighting_out_of": "Sau Paulo, Brazil",
+      "Weight_Class": "Welter Weight"
+    }
+  ]
+}
