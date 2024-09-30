@@ -1,6 +1,7 @@
 const  Fighterlist_url='http://localhost:3000/users';
 
 let id = "0"
+let inputId = "0"
 
 $.get(Fighterlist_url).then(data =>
     data.map(Fighterlist =>  {
@@ -27,7 +28,55 @@ $.get(Fighterlist_url).then(data =>
     )
 )
 
+$('#EditFighterBtn').on ("click",(e)=>{
+    e.preventDefault();
+    $('#Fighter-list').html('')
 
+    let Full_name = $('#name').val()
+    let Nick_name = $('#nickName').val()
+    let record = $('#record').val()
+    let Weight_Class = $('#Weight-class').val()
+    let fighting_out_of = $("#fighting-out-of").val()
+    console.log($('name').val());
+    console.log("Edit fighter clicked")
+
+    editFighter({"Full_name" : Full_name,
+        "Nick_name" : Nick_name,
+        "record" : record,
+        "fighting_out_of" : fighting_out_of,
+        "Weight_Class" : Weight_Class})
+    $.get(Fighterlist_url).then(data =>
+        data.map(Fighterlist =>  {
+            console.log(Fighterlist)
+            if (parseInt(Fighterlist.id) > parseInt(id))
+            {
+                id = toString(parseInt(Fighterlist.id) + 1)
+            }
+            console.log(typeof Fighterlist.id)
+            $('#Fighter-list').append(`
+                <tr>
+                    <td> ${Fighterlist.id}</td>
+                    <td> ${Fighterlist.Full_name}</td>
+                    <td> ${Fighterlist.Nick_name}</td>
+                    <td> ${Fighterlist.record}</td>
+                    <td> ${Fighterlist.fighting_out_of}</td>
+                    <td> ${Fighterlist.Weight_Class}</td>
+                    <td><button class= "btn btn-danger" onclick="deleteFighter(${Fighterlist.id})">Delete</button></td>
+                 
+                </tr>
+                `)
+
+            
+            }
+         
+            
+        )
+        
+    )
+
+})
+
+    
 
 
 
@@ -59,6 +108,7 @@ console.log($('#name').val())
                     <td> ${Fighterlist.fighting_out_of}</td>
                     <td> ${Fighterlist.Weight_Class}</td>
                     <td><button class= "btn btn-danger" onclick="deleteFighter(${Fighterlist.id})">Delete</button></td>
+                 
                 </tr>
                 `)
 
@@ -69,14 +119,9 @@ console.log($('#name').val())
         )
         
     )
+  
     
-    $('#EditFighterBtn').on ("click",(e) =>{
-        e.preventDefault();
-        $('#Fighter-list').html('')
-        
-        
-    });
-    
+
    
     
      
@@ -90,14 +135,16 @@ $.post(Fighterlist_url, {
 })
 .get()
 });
-function editFighter(id){
-    console.log("Editing id:",id);
-    $.ajax(`${Fighterlist_url}/${id}`,{
-        method: "Edit",
-
+function editFighter(data){
+    console.log("Editing id:",data);
+    const request = $.ajax(`${Fighterlist_url}/${inputId}`,{
+        method: "PATCH",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(data)
  })
- 
-}
+};
 
 
 function deleteFighter( id){
@@ -132,7 +179,9 @@ JSON.stringify({
      actions:$('#updateActions').val(),
  });
 
-$('#UpdateList').on ("click",(e) => UpdateList(e)) 
+//$('#UpdateList').on ("click",(e) => UpdateList(e)) 
 
 
-
+document.getElementById("Edit").addEventListener("input", (e) => {
+    inputId = e.target.value;
+})
