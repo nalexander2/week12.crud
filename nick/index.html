@@ -7,7 +7,63 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container">
+
+      <h1 id="header">Nicks Fight Club</h1>
+      
+      <form id="fightRoster" class="mb-4">
+          
+          </div>
+      <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" required> 
+      </div>
+      <div class="form-group"></div>
+          <label for="nickName">NickName</label>
+          <input type="text" class="form-control" id="nickName" required> 
+      </div>
+      <div class="form-group"></div>
+          <label for="record">Record</label>
+          <input type="text" class="form-control" id="record" required> 
+      </div>
+      <div class="form-group"></div>
+          <label for="fighting-out-of">Fighting out of</label>
+          <input type="text" class="form-control" id="fighting-out-of" required> 
+      </div>
+      <div class="form-group"></div>
+          <label for="Weight-class">Weight Class</label>
+          <input type="text" class="form-control" id="Weight-class" required> 
+      </div>
+      <button id="addFighterBtn" class="btn btn-primary">Add fighter</button>
+  </form>
+
+  <table id="fighter-table" class="table table-dark">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>nick Name</th>
+              <th>Record</th>
+              <th>fighting out of</th>
+              <th>Weight Class</th>
+              <th>Actions</th>
+              
+          </tr>
+
+      </thead>
+      <tbody id="Fighter-list"></tbody>
+
+      
+  </table>
+
+ <div class="form-group"></div>
+          <label for="Edit"></label>
+          <input type="text" class="form-control" id="Edit" required> 
+      </div>
+      <button id="EditFighterBtn" class="btn btn-primary">Edit fighter</button> 
+  </div>
+
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
